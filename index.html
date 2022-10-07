@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <main></main>
+</body>
+<script>
+    
+    async function obterDados() {
+        try{
+            const response = await fetch('http://localhost:8080/')
+            const data = await response.json()
+            console.log(data)
+            exibir(data)
+        } catch(error) {
+            console.log(error)
+        }
+    }
+    obterDados()
+
+    function exibir(posts) {
+        let valor = ''
+        for(let post of posts){
+            const estrutura = `<h2>${post.title}</h2><p>${post.body}</p>` 
+            valor += estrutura
+        }
+        document.querySelector('main').innerHTML = valor
+    }
+
+</script>
+</html>
